@@ -1,4 +1,4 @@
-🧠 Machine Learning Models from Scratch
+#🧠 Machine Learning Models from Scratch
 
 A curated collection of Machine Learning models implemented entirely from scratch using Python and NumPy — no sklearn.LinearRegression, no TensorFlow, no PyTorch shortcuts.
 Each project demonstrates the core mathematical intuition, gradient-based optimization, and hands-on implementation of key ML algorithms.
