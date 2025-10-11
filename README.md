@@ -1,103 +1,76 @@
-title: "🤖 Machine Learning Models — From Scratch"
-description: >
-  A collection of classic and modern Machine Learning models implemented **from scratch** using Python and NumPy.
-  This repository is designed for learners and practitioners who want to deeply understand how ML algorithms work
-  behind the scenes — without relying on high-level libraries like scikit-learn.
+# 🧠 Machine Learning Models from Scratch
 
-overview:
-  motivation: >
-    Most tutorials teach how to use machine learning libraries, but not how they actually work.
-    This repository aims to bridge that gap by building each algorithm from first principles,
-    including mathematical intuition, cost functions, optimization steps, and evaluation metrics.
-  goals:
-    - Reinforce core ML math and algorithmic intuition.
-    - Implement models using only NumPy for computations.
-    - Visualize performance and compare theoretical vs practical understanding.
+A curated collection of **Machine Learning models implemented entirely from scratch** using **Python** and **NumPy** —  
+no `sklearn.LinearRegression`, no TensorFlow, no PyTorch shortcuts.  
 
-structure:
-  root_directory: "machine-learning-models/"
-  contents:
-    - linear_regression/
-    - logistic_regression/
-    - k_means/
-    - decision_tree/
-    - support_vector_machine/
-    - neural_network/
-  notes: >
-    Each folder contains:
-      - Model implementation (.py file)
-      - Test/demo script (.py)
-      - Model-specific README.yml (theoretical explanation + math + usage)
+Each project demonstrates the **core mathematical intuition**, **gradient-based optimization**,  
+and **hands-on implementation** of key ML algorithms.
 
-implemented_models:
-  - name: "Linear Regression"
-    status: "✅ Completed"
-    key_topics:
-      - Hypothesis function
-      - Gradient Descent
-      - Mean Squared Error (MSE)
-  - name: "Logistic Regression"
-    status: "🚧 In Progress"
-    key_topics:
-      - Sigmoid Function
-      - Binary Cross-Entropy
-      - Gradient Updates
-  - name: "K-Means Clustering"
-    status: "🧩 Planned"
-    key_topics:
-      - Centroid Initialization
-      - Inertia Minimization
-      - Iterative Optimization
+---
 
-technologies:
-  languages: ["Python 3.x"]
-  libraries_used: ["NumPy", "Matplotlib"]
-  optional_tools: ["scikit-learn (for dataset generation only)"]
+## 📚 Models Included
 
-how_to_run:
-  requirements:
-    - Python 3.10+
-    - Install dependencies:
-      command: "pip install numpy matplotlib scikit-learn"
-  example_usage: |
-    # Clone repository
-    git clone https://github.com/<your-username>/machine-learning-models.git
-    cd machine-learning-models/linear_regression
+| Model | Description |
+|-------|--------------|
+| 🔹 **Linear Regression** | Predicts continuous values using gradient descent optimization. |
+| 🔹 *(Coming Soon)* **Logistic Regression** | Classification model using sigmoid activation and cross-entropy loss. |
+| 🔹 *(Coming Soon)* **Decision Tree** | Recursive tree-based model for regression and classification. |
+| 🔹 *(Coming Soon)* **K-Means Clustering** | Unsupervised clustering based on centroid optimization. |
 
-    # Run model
-    python Linear_Regression_test.py
+---
 
-future_plans:
-  - Implement Logistic Regression with gradient descent.
-  - Add evaluation metrics (R², MAE, Accuracy, etc.).
-  - Build neural network from scratch with backpropagation.
-  - Visualize learning process using Matplotlib animations.
+## 🧩 Project Philosophy
 
-learning_resources:
-  - "Andrew Ng — Machine Learning (Coursera)"
-  - "Sebastian Raschka — Python Machine Learning"
-  - "Aurelien Geron — Hands-On Machine Learning"
-  - "MIT OpenCourseWare — Introduction to Machine Learning"
-  - "Wikipedia — Mathematical background for each model"
+> 🧮 “Understanding Machine Learning starts with coding the math yourself.”
 
-author:
-  name: "Mohamed Maged Elsayed Ahmed Elberry"
-  location: "Cairo, Egypt"
-  email: "mohamed_berry210@hotmail.com"
-  linkedin: "https://linkedin.com/in/mohamed-elberry"
-  github: "https://github.com/<your-username>"
-  interests: ["Artificial Intelligence", "Machine Learning", "Embedded Systems", "Digital Design"]
+Each model in this repository:
 
-license:
-  type: "MIT License"
-  year: 2025
-  holder: "Mohamed Elberry"
+- Uses **NumPy** for vectorized computation.  
+- Avoids built-in ML abstractions.  
+- Follows a consistent structure:
 
-tags:
-  - "machine learning"
-  - "deep learning"
-  - "python"
-  - "from scratch"
-  - "ai"
-  - "gradient descent"
-  - "data science"
+model.py → Implementation
+train.py → Data generation & training
+README.md → Theory + Code explanation
+
+yaml
+Copy code
+
+---
+
+## 🚀 How to Run
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/machine-learning-models.git
+cd machine-learning-models/linear_regression
+
+# Run the model
+python Linear_Regression_test.py
+(Replace <your-username> with your GitHub username)
+
+🧑‍💻 Tech Stack
+Language: Python 3.x
+
+Libraries: NumPy, Matplotlib (for visualization)
+
+(Scikit-learn only used for dataset generation)
+
+🌟 Author
+Mohamed Elberry
+📍 Cairo, Egypt
+💼 Passionate about AI, ML, and Embedded Systems
+
+🔗 LinkedIn • GitHub
+
+🧠 Learning Goals
+Understand core ML math and gradient descent.
+
+Implement algorithms from first principles.
+
+Build a reusable foundation for deeper ML models.
+
+📄 License
+MIT License © 2025 Mohamed Elberry
+
+⭐ If you like this repository, give it a star to support more model implementations!
