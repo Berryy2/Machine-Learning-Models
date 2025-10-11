@@ -41,7 +41,7 @@ Where
 
 The cost function measures how well the model fits the data:
 
-J(θ, b) = (1 / (2m)) * Σ(ŷᵢ - yᵢ)²
+> **J(θ, b) = (1 / 2m) Σ (ŷ⁽ⁱ⁾ − y⁽ⁱ⁾)²**
 
 
 Our goal is to minimize **J(θ, b)**.
@@ -52,8 +52,8 @@ Our goal is to minimize **J(θ, b)**.
 
 To minimize the cost function, parameters are updated iteratively as:
 
-θ := θ - α * (1/m) * Xᵀ(ŷ - y)
-b := b - α * (1/m) * Σ(ŷᵢ - yᵢ)
+> **θ := θ − α × (1/m) × Xᵀ (ŷ − y)**  
+> **b := b − α × (1/m) × Σ (ŷ⁽ⁱ⁾ − y⁽ⁱ⁾)**
 
 
 Where:
@@ -126,5 +126,6 @@ Additional explanations adapted from Wikipedia - Linear Regression
 Author: Mohamed Elberry
 
 💡 Passionate about understanding ML from first principles
+
 
 
