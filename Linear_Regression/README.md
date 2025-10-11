@@ -7,8 +7,8 @@ No `sklearn.LinearRegression` is used — the algorithm is implemented manually 
 
 ## 🎯 Objective
 
-Linear Regression aims to find the best-fitting line that predicts a continuous target variable `y` from an input feature `x`  
-by minimizing the difference between predicted and actual values.
+Linear Regression aims to find the **best-fitting line** that predicts a continuous target variable `y` from an input feature `x`,  
+by minimizing the difference between **predicted** and **actual** values.
 
 ---
 
@@ -17,48 +17,60 @@ by minimizing the difference between predicted and actual values.
 ### 🔹 Hypothesis Function
 
 For a single feature:
-\[
-\hat{y} = w x + b
-\]
+
+ŷ = w * x + b
+
+yaml
+Copy code
 
 For multiple features:
-\[
-\hat{y} = X \cdot \theta + b
-\]
 
-where:
-- \( X \) → input features matrix of shape \((m, n)\)
-- \( \theta \) → parameter (weight) vector of shape \((n, 1)\)
-- \( b \) → bias term (scalar)
-- \( m \) → number of training examples
-- \( n \) → number of features
+ŷ = X·θ + b
+
+ruby
+Copy code
+
+Where:
+
+| Symbol | Meaning |
+|:-------|:---------|
+| `X` | Input features matrix of shape (m, n) |
+| `θ` | Weight vector (parameters) of shape (n, 1) |
+| `b` | Bias term (scalar) |
+| `m` | Number of training examples |
+| `n` | Number of features |
 
 ---
 
 ### 🔹 Cost Function — Mean Squared Error (MSE)
 
-\[
-J(\theta, b) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})^2
-\]
+The cost function measures how well the model fits the data:
 
-The goal is to minimize \( J(\theta, b) \).
+J(θ, b) = (1 / (2m)) * Σ(ŷᵢ - yᵢ)²
+
+yaml
+Copy code
+
+Our goal is to minimize **J(θ, b)**.
 
 ---
 
 ### 🔹 Gradient Descent Update Rules
 
-To minimize the cost, we iteratively update parameters:
+To minimize the cost function, parameters are updated iteratively as:
 
-\[
-\theta := \theta - \alpha \frac{1}{m} X^T (\hat{y} - y)
-\]
-\[
-b := b - \alpha \frac{1}{m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})
-\]
+θ := θ - α * (1/m) * Xᵀ(ŷ - y)
+b := b - α * (1/m) * Σ(ŷᵢ - yᵢ)
 
-where:
-- \( \alpha \) → learning rate (controls step size)
-- \( \hat{y} = X\theta + b \)
+yaml
+Copy code
+
+Where:
+
+| Symbol | Meaning |
+|:-------|:---------|
+| `α` | Learning rate (controls the step size of each update) |
+| `ŷ` | Model predictions = Xθ + b |
 
 ---
 
@@ -67,31 +79,58 @@ where:
 ### 🔸 `Linear_Regression.py`
 
 Defines the `LinearRegression` class:
-- **Attributes**
-  - `Learning_rate`: step size for gradient updates
-  - `n_Iterations`: number of training iterations
-  - `parameters`: model weights
-  - `bias`: intercept term
-- **Methods**
-  - `fit(X, y)`: trains model via gradient descent
-  - `predict(X)`: computes predictions
+
+**Attributes**
+- `learning_rate` → step size for gradient updates  
+- `n_iterations` → number of training iterations  
+- `parameters` → model weights  
+- `bias` → intercept term  
+
+**Methods**
+- `fit(X, y)` → trains the model using gradient descent  
+- `predict(X)` → computes predictions for input data  
+
+---
 
 ### 🔸 `Linear_Regression_test.py`
 
-1. Generates a dataset using `sklearn.datasets.make_regression`.
-2. Splits it into training and testing sets.
-3. Trains the model and computes MSE.
-4. Visualizes results using Matplotlib.
+Demonstrates how to use the model:
+1. Generates a random regression dataset using `sklearn.datasets.make_regression`
+2. Splits data into training and testing sets
+3. Trains the model and evaluates it using Mean Squared Error
+4. Visualizes predictions using Matplotlib
 
 ---
 
 ## 📊 Visualization
 
 After training, the code plots:
-- Blue/yellow dots → actual data points
-- Black line → predicted regression line
+- 🟦 Actual data points  
+- ⚫ Predicted regression line  
 
-Example:
-
+Run the test file to visualize:
 ```bash
 python Linear_Regression_test.py
+Example output:
+A line fitting the data points showing the learned relationship.
+```
+
+🔍 Example Parameters
+Parameter	Example Value	Description
+learning_rate	0.01	Controls convergence speed
+n_iterations	1000	Number of gradient descent steps
+θ	[w₁, w₂, …, wₙ]	Feature weights
+b	scalar	Bias/intercept term
+
+🧾 References
+Andrew Ng — Machine Learning Course (Coursera)
+
+Scikit-learn documentation: LinearRegression
+
+“Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow” by Aurélien Géron
+
+Additional explanations adapted from Wikipedia - Linear Regression
+
+Author: Mohamed Elberry
+📍 Cairo, Egypt
+💡 Passionate about understanding ML from first principles
