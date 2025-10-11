@@ -53,10 +53,12 @@ Libraries: NumPy, Matplotlib (for visualization)
 
 🌟 Author
 Mohamed Elberry
+
 📍 Cairo, Egypt
+
 💼 Passionate about AI, ML, and Embedded Systems
 
-🔗 LinkedIn • GitHub
+🔗 LinkedIn: www.linkedin.com/in/mohamed-elberry-393b73292
 
 🧠 Learning Goals
 Understand core ML math and Optimization techniques.
