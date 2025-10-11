@@ -115,17 +115,18 @@ b	scalar	Bias/intercept term
 
 🧾 References
 
-Andrew Ng — Machine Learning Course (Coursera)
+- Andrew Ng — Machine Learning Course (Coursera)
 
-Scikit-learn documentation: LinearRegression
+- Scikit-learn documentation: LinearRegression
 
-“Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow” by Aurélien Géron
+- “Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow” by Aurélien Géron
 
-Additional explanations adapted from Wikipedia - Linear Regression
+- Additional explanations adapted from Wikipedia - Linear Regression
 
 Author: Mohamed Elberry
 
 💡 Passionate about understanding ML from first principles
+
 
 
 
