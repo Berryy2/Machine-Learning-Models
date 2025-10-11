@@ -14,20 +14,21 @@ by minimizing the difference between **predicted** and **actual** values.
 
 ## 🧠 Theoretical Overview
 
-### 🔹 Hypothesis Function
+## 🔹 Hypothesis Function
 
 For a single feature:
 
-ŷ = w * x + b
-
-yaml
-Copy code
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\hat{y}=w\cdot{x}+b" alt="ŷ = w·x + b" />
+</p>
 
 For multiple features:
 
-ŷ = X·θ + b
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\hat{y}=X\boldsymbol{\theta}+b" alt="ŷ = Xθ + b" />
+</p>
 
-Where:
+Where
 
 | Symbol | Meaning |
 |:-------|:---------|
@@ -128,3 +129,4 @@ Additional explanations adapted from Wikipedia - Linear Regression
 Author: Mohamed Elberry
 
 💡 Passionate about understanding ML from first principles
+
