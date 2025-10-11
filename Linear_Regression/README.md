@@ -115,7 +115,7 @@ b	scalar	Bias/intercept term
 
 🧾 References
 
-- Andrew Ng — Machine Learning Course (Coursera)
+- Andrew Ng — Machine Learning Course (Coursera) and you can find his amazing lecture notes in the folder.
 
 - Scikit-learn documentation: LinearRegression
 
@@ -126,6 +126,7 @@ b	scalar	Bias/intercept term
 Author: Mohamed Elberry
 
 💡 Passionate about understanding ML from first principles
+
 
 
 
