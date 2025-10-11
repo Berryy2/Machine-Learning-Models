@@ -1,105 +1,130 @@
-# ============================================================
-# 📈 Linear Regression — From Scratch (Gradient Descent)
-# ============================================================
+# 📈 Linear Regression — From Scratch (Gradient Descent Implementation)
 
-description: |
-  A complete implementation of Linear Regression from scratch using only NumPy.
-  No `sklearn.LinearRegression` — all computations and optimization are manually implemented
-  using the Gradient Descent algorithm to minimize the Mean Squared Error.
+This folder contains a complete implementation of **Linear Regression from scratch** using only **NumPy**.  
+No `sklearn.LinearRegression` is used — the algorithm is implemented manually using **Gradient Descent**.
 
-objective: |
-  Linear Regression aims to find the best-fitting line that predicts a continuous target variable `y`
-  from an input feature `x` by minimizing the difference between predicted and actual values.
+---
 
-# ------------------------------------------------------------
-# 🧠 Theoretical Overview
-# ------------------------------------------------------------
+## 🎯 Objective
 
-theory:
-  hypothesis_function:
-    single_feature: "ŷ = w * x + b"
-    multiple_features: "ŷ = X · θ + b"
-    explanation: |
-      - X → Input feature matrix of shape (m, n)
-      - θ → Weight vector (parameters) of shape (n, 1)
-      - b → Bias term (scalar)
-      - m → Number of training examples
-      - n → Number of features
+Linear Regression aims to find the **best-fitting line** that predicts a continuous target variable `y` from an input feature `x`,  
+by minimizing the difference between **predicted** and **actual** values.
 
-  cost_function:
-    formula: "J(θ, b) = (1 / (2m)) * Σ(ŷᵢ - yᵢ)²"
-    goal: "Minimize the cost function J(θ, b) — the mean squared error between predictions and true values."
+---
 
-  gradient_descent:
-    update_rules: |
-      θ := θ - α * (1/m) * Xᵀ(ŷ - y)
-      b := b - α * (1/m) * Σ(ŷᵢ - yᵢ)
-    definitions:
-      α: "Learning rate (controls the step size)"
-      ŷ: "Model predictions = Xθ + b"
+## 🧠 Theoretical Overview
 
-# ------------------------------------------------------------
-# ⚙️ Implementation Details
-# ------------------------------------------------------------
+### 🔹 Hypothesis Function
 
-implementation:
-  Linear_Regression.py:
-    purpose: "Defines the LinearRegression class."
-    attributes:
-      - learning_rate: "Step size for gradient updates"
-      - n_iterations: "Number of gradient descent iterations"
-      - parameters: "Model weights"
-      - bias: "Intercept term"
-    methods:
-      - fit(X, y): "Trains the model using gradient descent."
-      - predict(X): "Computes predictions for given input data."
+For a single feature:
 
-  Linear_Regression_test.py:
-    purpose: "Demonstrates training and testing of the custom Linear Regression model."
-    steps:
-      - "Generates a dataset using sklearn.datasets.make_regression."
-      - "Splits data into training and testing sets."
-      - "Trains the model and computes Mean Squared Error (MSE)."
-      - "Plots actual vs predicted values using Matplotlib."
+ŷ = w * x + b
 
-# ------------------------------------------------------------
-# 📊 Visualization
-# ------------------------------------------------------------
+yaml
+Copy code
 
-visualization:
-  description: |
-    After training, the model plots:
-      - Blue points → Actual data samples
-      - Black line → Predicted regression line
-  run_command: "python Linear_Regression_test.py"
+For multiple features:
 
-# ------------------------------------------------------------
-# 🔍 Example Parameters
-# ------------------------------------------------------------
+ŷ = X·θ + b
 
-parameters:
-  - learning_rate: "0.01 — controls convergence speed"
-  - n_iterations: "1000 — number of gradient descent steps"
-  - θ: "[w₁, w₂, …, wₙ] — feature weights"
-  - b: "scalar — bias/intercept term"
+Where:
 
-# ------------------------------------------------------------
-# 🧾 References
-# ------------------------------------------------------------
+| Symbol | Meaning |
+|:-------|:---------|
+| `X` | Input features matrix of shape (m, n) |
+| `θ` | Weight vector (parameters) of shape (n, 1) |
+| `b` | Bias term (scalar) |
+| `m` | Number of training examples |
+| `n` | Number of features |
 
-references:
-  - "Andrew Ng — Machine Learning (Coursera)"
-  - "Scikit-learn documentation: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
-  - "Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow — Aurélien Géron"
-  - "Wikipedia — Linear Regression: https://en.wikipedia.org/wiki/Linear_regression"
+---
 
-# ------------------------------------------------------------
-# 🌟 Author
-# ------------------------------------------------------------
+### 🔹 Cost Function — Mean Squared Error (MSE)
 
-author:
-  name: "Mohamed Elberry"
-  location: "Cairo, Egypt"
-  links:
-    github: "https://github.com/mohamedelberry"
-  passion: "Exploring AI, ML, and Embedded Systems from first principles."
+The cost function measures how well the model fits the data:
+
+J(θ, b) = (1 / (2m)) * Σ(ŷᵢ - yᵢ)²
+
+
+Our goal is to minimize **J(θ, b)**.
+
+---
+
+### 🔹 Gradient Descent Update Rules
+
+To minimize the cost function, parameters are updated iteratively as:
+
+θ := θ - α * (1/m) * Xᵀ(ŷ - y)
+b := b - α * (1/m) * Σ(ŷᵢ - yᵢ)
+
+
+Where:
+
+| Symbol | Meaning |
+|:-------|:---------|
+| `α` | Learning rate (controls the step size of each update) |
+| `ŷ` | Model predictions = Xθ + b |
+
+---
+
+## ⚙️ Implementation Details
+
+### 🔸 `Linear_Regression.py`
+
+Defines the `LinearRegression` class:
+
+**Attributes**
+- `learning_rate` → step size for gradient updates  
+- `n_iterations` → number of training iterations  
+- `parameters` → model weights  
+- `bias` → intercept term  
+
+**Methods**
+- `fit(X, y)` → trains the model using gradient descent  
+- `predict(X)` → computes predictions for input data  
+
+---
+
+### 🔸 `Linear_Regression_test.py`
+
+Demonstrates how to use the model:
+1. Generates a random regression dataset using `sklearn.datasets.make_regression`
+2. Splits data into training and testing sets
+3. Trains the model and evaluates it using Mean Squared Error
+4. Visualizes predictions using Matplotlib
+
+---
+
+## 📊 Visualization
+
+After training, the code plots:
+- 🟦 Actual data points  
+- ⚫ Predicted regression line  
+
+Run the test file to visualize:
+```bash
+python Linear_Regression_test.py
+Example output:
+A line fitting the data points showing the learned relationship.
+```
+
+🔍 Example Parameters
+Parameter	Example Value	Description
+learning_rate	0.01	Controls convergence speed
+n_iterations	1000	Number of gradient descent steps
+θ	[w₁, w₂, …, wₙ]	Feature weights
+b	scalar	Bias/intercept term
+
+🧾 References
+
+Andrew Ng — Machine Learning Course (Coursera)
+
+Scikit-learn documentation: LinearRegression
+
+“Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow” by Aurélien Géron
+
+Additional explanations adapted from Wikipedia - Linear Regression
+
+Author: Mohamed Elberry
+
+💡 Passionate about understanding ML from first principles
