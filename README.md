@@ -16,9 +16,9 @@ and **hands-on implementation** of key ML algorithms.
 
 ---
 
-## 🧩 Project Philosophy
+## 🧩 Why make a code given in a Library?
 
-> 🧮 “Understanding Machine Learning starts with coding the math yourself.”
+ “Understanding Machine Learning starts with coding the math yourself.”
 
 Each model in this repository:
 
@@ -39,6 +39,9 @@ README.md → Theory + Code explanation
 # Clone the repository
 git clone https://github.com/Berryy2/machine-learning-models.git
 cd machine-learning-models/linear_regression
+
+# Run the model
+python Linear_Regression_test.py
 ```
 
 🧑‍💻 Tech Stack
