@@ -18,15 +18,12 @@ by minimizing the difference between **predicted** and **actual** values.
 
 For a single feature:
 
-<p align="center">
-  <img src="https://latex.codecogs.com/svg.image?\hat{y}=w\cdot{x}+b" alt="ŷ = w·x + b" />
-</p>
+> **ŷ = w · x + b**
 
 For multiple features:
 
-<p align="center">
-  <img src="https://latex.codecogs.com/svg.image?\hat{y}=X\boldsymbol{\theta}+b" alt="ŷ = Xθ + b" />
-</p>
+> **ŷ = X · θ + b**
+
 
 Where
 
@@ -129,4 +126,5 @@ Additional explanations adapted from Wikipedia - Linear Regression
 Author: Mohamed Elberry
 
 💡 Passionate about understanding ML from first principles
+
 
