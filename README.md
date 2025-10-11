@@ -8,14 +8,11 @@ and **hands-on implementation** of key ML algorithms.
 
 ---
 
-## 📚 Models Included
+## 📚 Models Included Til Now
 
 | Model | Description |
 |-------|--------------|
 | 🔹 **Linear Regression** | Predicts continuous values using gradient descent optimization. |
-| 🔹 *(Coming Soon)* **Logistic Regression** | Classification model using sigmoid activation and cross-entropy loss. |
-| 🔹 *(Coming Soon)* **Decision Tree** | Recursive tree-based model for regression and classification. |
-| 🔹 *(Coming Soon)* **K-Means Clustering** | Unsupervised clustering based on centroid optimization. |
 
 ---
 
@@ -33,8 +30,6 @@ model.py → Implementation
 train.py → Data generation & training
 README.md → Theory + Code explanation
 
-yaml
-Copy code
 
 ---
 
@@ -42,12 +37,9 @@ Copy code
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/machine-learning-models.git
+git clone https://github.com/Berryy2/machine-learning-models.git
 cd machine-learning-models/linear_regression
-
-# Run the model
-python Linear_Regression_test.py
-(Replace <your-username> with your GitHub username)
+```
 
 🧑‍💻 Tech Stack
 Language: Python 3.x
@@ -64,7 +56,7 @@ Mohamed Elberry
 🔗 LinkedIn • GitHub
 
 🧠 Learning Goals
-Understand core ML math and gradient descent.
+Understand core ML math and Optimization techniques.
 
 Implement algorithms from first principles.
 
