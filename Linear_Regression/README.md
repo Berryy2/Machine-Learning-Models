@@ -1,104 +1,97 @@
-title: "🔹 Linear Regression — From Scratch"
-description: >
-  Linear Regression is a supervised learning algorithm used to predict a continuous target variable `y` based on one or more input features `x`.
-  It assumes a linear relationship between input and output.
+# 📈 Linear Regression — From Scratch (Gradient Descent Implementation)
 
-overview:
-  hypothesis_function: |
-    ẏ = wX + b
-    - w: weight (slope)
-    - b: bias (intercept)
-    - X: input features
-    - ẏ: predicted output
+This folder contains a complete implementation of **Linear Regression from scratch** using only **NumPy**.  
+No `sklearn.LinearRegression` is used — the algorithm is implemented manually using **Gradient Descent**.
 
-parameters:
-  - name: w
-    meaning: Determines slope of regression line
-    update_rule: "w = w - α ∂J/∂w"
-  - name: b
-    meaning: Shifts line up or down
-    update_rule: "b = b - α ∂J/∂b"
+---
 
-cost_function:
-  formula: "J(w,b) = (1 / 2m) * Σ(ẏᵢ - yᵢ)²"
-  explanation: >
-    Measures the average squared difference between predicted and actual values.
-    Minimizing this function gives the best-fit line.
+## 🎯 Objective
 
-gradient_descent:
-  partial_derivatives: |
-    ∂J/∂w = (1/m) Σ(ẏᵢ - yᵢ) Xᵢ
-    ∂J/∂b = (1/m) Σ(ẏᵢ - yᵢ)
-  update_equations: |
-    w := w - α * ∂J/∂w
-    b := b - α * ∂J/∂b
-  learning_rate: α (controls step size)
+Linear Regression aims to find the best-fitting line that predicts a continuous target variable `y` from an input feature `x`  
+by minimizing the difference between predicted and actual values.
 
-implementation:
-  language: "Python 3.x"
-  libraries: ["NumPy", "Matplotlib"]
-  code_example: |
-    import numpy as np
-    import matplotlib.pyplot as plt
+---
 
-    class LinearRegression:
-        def __init__(self, lr=0.01, epochs=1000):
-            self.lr = lr
-            self.epochs = epochs
-            self.w = 0
-            self.b = 0
+## 🧠 Theoretical Overview
 
-        def fit(self, X, y):
-            n = len(y)
-            for _ in range(self.epochs):
-                y_pred = self.w * X + self.b
-                dw = -(2/n) * np.sum(X * (y - y_pred))
-                db = -(2/n) * np.sum(y - y_pred)
-                self.w -= self.lr * dw
-                self.b -= self.lr * db
+### 🔹 Hypothesis Function
 
-        def predict(self, X):
-            return self.w * X + self.b
+For a single feature:
+\[
+\hat{y} = w x + b
+\]
 
-    if __name__ == "__main__":
-        from sklearn.datasets import make_regression
-        X, y = make_regression(n_samples=80, n_features=1, noise=10, random_state=42)
-        X, y = X.flatten(), y.flatten()
+For multiple features:
+\[
+\hat{y} = X \cdot \theta + b
+\]
 
-        model = LinearRegression(lr=0.01, epochs=1000)
-        model.fit(X, y)
-        y_pred = model.predict(X)
+where:
+- \( X \) → input features matrix of shape \((m, n)\)
+- \( \theta \) → parameter (weight) vector of shape \((n, 1)\)
+- \( b \) → bias term (scalar)
+- \( m \) → number of training examples
+- \( n \) → number of features
 
-        plt.scatter(X, y, color='blue', label='Data')
-        plt.plot(X, y_pred, color='red', label='Regression Line')
-        plt.legend()
-        plt.show()
+---
 
-evaluation:
-  metric: "Mean Squared Error (MSE)"
-  formula: "MSE = (1/m) Σ(ẏᵢ - yᵢ)²"
-  meaning: >
-    Represents the average of the squares of the errors between predicted and actual values.
+### 🔹 Cost Function — Mean Squared Error (MSE)
 
-key_learnings:
-  - Learned how gradient descent optimizes weights.
-  - Understood the difference between fit and predict.
-  - Implemented MSE manually as a loss function.
+\[
+J(\theta, b) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})^2
+\]
 
-references:
-  - "Andrew Ng - Machine Learning (Coursera)"
-  - "Aurelien Geron - Hands-On Machine Learning with Scikit-Learn & TensorFlow"
-  - "Wikipedia: https://en.wikipedia.org/wiki/Linear_regression"
+The goal is to minimize \( J(\theta, b) \).
 
-author:
-  name: "Mohamed Elberry"
-  location: "Cairo, Egypt"
-  interests: ["AI", "ML", "Embedded Systems"]
-  links:
-    linkedin: "https://linkedin.com/in/mohamed-elberry"
-    github: "https://github.com/<your-username>"
+---
 
-license:
-  type: "MIT License"
-  year: 2025
-  holder: "Mohamed Elberry"
+### 🔹 Gradient Descent Update Rules
+
+To minimize the cost, we iteratively update parameters:
+
+\[
+\theta := \theta - \alpha \frac{1}{m} X^T (\hat{y} - y)
+\]
+\[
+b := b - \alpha \frac{1}{m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})
+\]
+
+where:
+- \( \alpha \) → learning rate (controls step size)
+- \( \hat{y} = X\theta + b \)
+
+---
+
+## ⚙️ Implementation Details
+
+### 🔸 `Linear_Regression.py`
+
+Defines the `LinearRegression` class:
+- **Attributes**
+  - `Learning_rate`: step size for gradient updates
+  - `n_Iterations`: number of training iterations
+  - `parameters`: model weights
+  - `bias`: intercept term
+- **Methods**
+  - `fit(X, y)`: trains model via gradient descent
+  - `predict(X)`: computes predictions
+
+### 🔸 `Linear_Regression_test.py`
+
+1. Generates a dataset using `sklearn.datasets.make_regression`.
+2. Splits it into training and testing sets.
+3. Trains the model and computes MSE.
+4. Visualizes results using Matplotlib.
+
+---
+
+## 📊 Visualization
+
+After training, the code plots:
+- Blue/yellow dots → actual data points
+- Black line → predicted regression line
+
+Example:
+
+```bash
+python Linear_Regression_test.py
