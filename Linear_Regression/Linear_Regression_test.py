@@ -34,16 +34,23 @@ This gives us a plot of points that roughly form a straight line with some scatt
 from Linear_Regression import LinearRegression
 
 regressor = LinearRegression(Learning_rate= 0.01)
+
+# Now gradient descent runs → updates θ & b until convergence.
 regressor.fit(x_train, y_train)
 regressor.fit(x_train, y_train)
+
+# This uses your trained model to predict on unseen (test) data.
 predictions = regressor.predict(x_test)
 
+# Here we compute Mean Squared Error between actual and predicted test values.
 def mse(y_true, y_predictions):
     return np.mean((y_true - y_predictions)**2)
 
+# And computes Mean Squared Error between actual and predicted test values.
 mse_value = mse(y_test, predictions)
 print(mse_value)
 
+# Visualize the Results.
 y_pred_line = regressor.predict(x)
 cmap = plt.get_cmap('viridis')
 fig = plt.figure(figsize=(8, 6))
