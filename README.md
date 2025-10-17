@@ -13,6 +13,7 @@ and **hands-on implementation** of key ML algorithms.
 | Model | Description |
 |-------|--------------|
 | 🔹 **Linear Regression** | Predicts continuous values using gradient descent optimization. |
+| 🔹 **Logistic Regression** | Predicts categorical outcomes (usually binary: 0 or 1). |
 
 ---
 
