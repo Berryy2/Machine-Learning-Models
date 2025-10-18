@@ -1,242 +1,158 @@
-\# 🧮 Logistic Regression from Scratch (NumPy Implementation)
+# 🧩 Logistic Regression — From Scratch (Using NumPy)
 
-
-
-A clean and well-documented implementation of \*\*Logistic Regression\*\* using only \*\*NumPy\*\*, built entirely from scratch — without using `scikit-learn`’s built-in model.
-
-
-
-This project demonstrates the core principles behind gradient-based optimization and binary classification using the \*\*sigmoid hypothesis function\*\*.
-
-
+A complete implementation of **Logistic Regression** built entirely from scratch using **NumPy**, without relying on `sklearn.LogisticRegression`.  
+This model is trained using **Gradient Descent** to minimize the **Binary Cross-Entropy Loss**.
 
 ---
 
+## 🎯 Objective
 
-
-\## 📘 Project Overview
-
-
-
-This repository contains a minimal and educational implementation of \*\*Logistic Regression\*\*, one of the most fundamental algorithms in Machine Learning.
-
-
-
-The goal is to:
-
-\- Understand logistic regression mathematically and programmatically.
-
-\- Implement gradient descent manually.
-
-\- Evaluate model accuracy on a real dataset (Breast Cancer dataset from `sklearn.datasets`).
-
-
+Logistic Regression is a **supervised classification algorithm** used to predict a binary outcome (0 or 1).  
+It models the **probability** that a given input `x` belongs to class `1` using the **sigmoid function**.
 
 ---
 
+## 🧮 Theoretical Foundation
 
+### 🔹 Hypothesis Function
 
-\## 🧠 Algorithm Summary
+For a dataset with `n` features:
 
+\[
+\hat{y} = \sigma(w^T x + b)
+\]
 
+where:
 
-Logistic Regression is a \*\*linear classifier\*\* that models the probability of class membership using the \*\*sigmoid function\*\*:
-
-
-
-\\\[
-
-h\_\\theta(x) = \\frac{1}{1 + e^{-(w^T x + b)}}
-
-\\]
-
-
-
-We optimize the parameters \\( w \\) and \\( b \\) by minimizing the \*\*logistic loss\*\* (binary cross-entropy) using \*\*gradient descent\*\*:
-
-
-
-\\\[
-
-J(w, b) = -\\frac{1}{m} \\sum\_{i=1}^{m} \[y^{(i)} \\log(h\_\\theta(x^{(i)})) + (1 - y^{(i)}) \\log(1 - h\_\\theta(x^{(i)}))]
-
-\\]
-
-
+- \( w \) → weight vector of shape \((n, 1)\)  
+- \( b \) → bias (scalar)  
+- \( \sigma(z) = \frac{1}{1 + e^{-z}} \) → **sigmoid activation**  
+- Output \( \hat{y} \in (0, 1) \) represents the predicted probability of class `1`
 
 ---
 
+### 🔹 Decision Rule
 
-
-\## ⚙️ Implementation Details
-
-
-
-\### 🔹 `LogesticRegression` class
-
-Defined in `Logestic\_Regression\_Model.py`:
-
-
-
-\- `\_\_init\_\_(learning\_rate, n\_iterations)`: Initializes hyperparameters.  
-
-\- `fit(X, y)`: Trains the model using gradient descent.  
-
-\- `hypothesis(X)`: Predicts labels for new samples.  
-
-\- `\_sigmoid(x)`: Applies the sigmoid activation function.
-
-
-
-\### 🚀 Optimization Logic
-
-Gradients are computed as:
-
-
-
-\\\[
-
-\\frac{\\partial J}{\\partial w} = \\frac{1}{m} X^T (h - y), \\quad
-
-\\frac{\\partial J}{\\partial b} = \\frac{1}{m} \\sum (h - y)
-
-\\]
-
-
-
-Parameters are updated iteratively using:
-
-
-
-\\\[
-
-w := w - \\alpha \\cdot \\frac{\\partial J}{\\partial w}, \\quad
-
-b := b - \\alpha \\cdot \\frac{\\partial J}{\\partial b}
-
-\\]
-
-
+\[
+\hat{y}_{class} =
+\begin{cases}
+1, & \text{if } \hat{y} \geq 0.5 \\
+0, & \text{if } \hat{y} < 0.5
+\end{cases}
+\]
 
 ---
 
+### 🔹 Cost Function — Binary Cross-Entropy Loss
 
+To measure prediction error:
 
-\## 🧪 Testing \& Evaluation
+\[
+J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \Big]
+\]
 
+where:
+- \( m \) → number of training examples  
+- \( y^{(i)} \in \{0, 1\} \) → true label  
+- \( \hat{y}^{(i)} \) → predicted probability
 
+---
 
-Testing code is provided in `Logestic\_Regression\_Test.py`.  
+### 🔹 Gradient Descent Optimization
 
-The \*\*Breast Cancer dataset\*\* from scikit-learn is used to validate model accuracy.
+To minimize the cost \( J(w, b) \), parameters are updated as follows:
 
+\[
+\begin{aligned}
+w &:= w - \alpha \frac{1}{m} X^T (\hat{y} - y) \\
+b &:= b - \alpha \frac{1}{m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})
+\end{aligned}
+\]
 
+where \( \alpha \) is the learning rate.
 
-Example:
+---
 
-```python
+## ⚙️ Implementation Overview
 
-regressor = LogesticRegression(learning\_rate=0.001, n\_iterations=1000)
+### `Logistic_Regression_Model.py`
 
-regressor.fit(x\_train, y\_train)
+Defines the class **`LogisticRegression`** with:
+- `__init__`: initializes hyperparameters (learning rate, iterations)
+- `fit(X, y)`: trains using gradient descent
+- `predict(X)`: returns class predictions (0 or 1)
+- `_sigmoid(x)`: computes the sigmoid activation
 
-predictions = regressor.hypothesis(x\_test)
+---
 
-print("Logistic Regression accuracy:", accuracy(y\_test, predictions))
+### `Logistic_Regression_Test.py`
 
-✅ Expected Accuracy: ~0.90–0.95 depending on learning rate and iterations.
+1. Loads the **Breast Cancer dataset** from `sklearn.datasets`.  
+2. Splits the dataset into training and testing sets.  
+3. Trains the model and evaluates accuracy.  
+4. Prints model performance.
 
-
-
-🗂️ Repository Structure
-
-bash
-
-Copy code
-
-machine-learning-models/
-
-│
-
-├── Logestic Regression/
-
-│   ├── Logestic\_Regression\_Model.py    # Core model implementation
-
-│   ├── Logestic\_Regression\_Test.py     # Dataset loading, training, and evaluation
-
-│   └── README.md                       # You are here
-
-│
-
-└── ...
-
-🚀 How to Run
-
-Clone this repository:
-
-
-
-bash
-
-Copy code
-
-git clone https://github.com/Berryy2/machine-learning-models.git
-
-cd machine-learning-models/Logestic\\ Regression
-
-Install dependencies:
-
-
-
-bash
-
-Copy code
-
-pip install numpy scikit-learn matplotlib
-
-Run the model:
-
-
-
-bash
-
-Copy code
-
-python Logestic\_Regression\_Test.py
-
-📊 Example Output
+Example Output:
+Logistic Regression classification accuracy: 0.93
 
 yaml
-
 Copy code
 
-Training Logistic Regression...
+---
 
-Model converged after 1000 iterations.
+## 🧑‍💻 Example Usage
 
-Logistic regression classification accuracy: 0.931578947368421
+```bash
+python Logistic_Regression_Test.py
+📈 Visualization (Optional)
+You can visualize the sigmoid function for intuition:
 
-📈 Future Improvements
+𝜎
+(
+𝑧
+)
+=
+1
+1
++
+𝑒
+−
+𝑧
+σ(z)= 
+1+e 
+−z
+ 
+1
+​
+ 
+python
+Copy code
+import numpy as np
+import matplotlib.pyplot as plt
 
-Add Newton’s Method optimization for faster convergence.
+z = np.linspace(-10, 10, 200)
+sigma = 1 / (1 + np.exp(-z))
 
+plt.plot(z, sigma, color="black")
+plt.title("Sigmoid Function")
+plt.xlabel("z")
+plt.ylabel("σ(z)")
+plt.grid(True)
+plt.show()
+🧠 Key Takeaways
+✅ Implements Logistic Regression from first principles
+✅ Uses Gradient Descent optimization
+✅ Builds intuition about sigmoid and cost function
+✅ Prepares you for extensions to Softmax and Multiclass Classification
 
+📚 References
+Andrew Ng, Machine Learning (Stanford CS229 Notes)
 
-Support multiclass classification via One-vs-Rest strategy.
+ISLR: An Introduction to Statistical Learning
 
+Géron, Aurélien — Hands-On Machine Learning with Scikit-Learn and TensorFlow
 
-
-Add visualization of decision boundaries for 2D datasets.
-
-
-
-Compare performance with sklearn.linear\_model.LogisticRegression.
-
-
-
-💡 Credits
-
-Developed by Mohamed Maged Elberry
-
-🎓 Master’s Student — Machine Learning \& AI
-
+👨‍💻 Author
+Mohamed Elberry
+📍 Cairo, Egypt
+💼 Passionate about AI, Machine Learning & Embedded Systems
