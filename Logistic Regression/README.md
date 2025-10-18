@@ -95,36 +95,20 @@ Defines the class **`LogisticRegression`** with:
 Example Output:
 Logistic Regression classification accuracy: 0.93
 
-yaml
-Copy code
+
 
 ---
 
 ## 🧑‍💻 Example Usage
 
-```bash
+
 python Logistic_Regression_Test.py
 📈 Visualization (Optional)
 You can visualize the sigmoid function for intuition:
 
-𝜎
-(
-𝑧
-)
-=
-1
-1
-+
-𝑒
-−
-𝑧
-σ(z)= 
-1+e 
-−z
- 
-1
-​
- 
+math
+\sigma(z) = \frac{1}{1 + e^{-z}
+ ```bash
 python
 Copy code
 import numpy as np
