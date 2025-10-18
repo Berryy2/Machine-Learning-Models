@@ -1,142 +1,125 @@
-# 🧩 Logistic Regression — From Scratch (Using NumPy)
+# 🧠 Logistic Regression from Scratch
 
-A complete implementation of **Logistic Regression** built entirely from scratch using **NumPy**, without relying on `sklearn.LogisticRegression`.  
-This model is trained using **Gradient Descent** to minimize the **Binary Cross-Entropy Loss**.
-
----
-
-## 🎯 Objective
-
-Logistic Regression is a **supervised classification algorithm** used to predict a binary outcome (0 or 1).  
-It models the **probability** that a given input `x` belongs to class `1` using the **sigmoid function**.
+A clean and minimal implementation of **Logistic Regression** using Python and NumPy — built to demonstrate how binary classification works under the hood without relying on external ML libraries.
 
 ---
 
-## 🧮 Theoretical Foundation
+## 📘 Overview
 
-### 🔹 Hypothesis Function
+Logistic Regression is a **linear model for classification**.  
+It predicts the probability that an input `x` belongs to class `1` using the **sigmoid activation**:
 
-For a dataset with `n` features:
-
-\[
-\hat{y} = \sigma(w^T x + b)
-\]
-
-where:
-
-- \( w \) → weight vector of shape \((n, 1)\)  
-- \( b \) → bias (scalar)  
-- \( \sigma(z) = \frac{1}{1 + e^{-z}} \) → **sigmoid activation**  
-- Output \( \hat{y} \in (0, 1) \) represents the predicted probability of class `1`
+`σ(z) = 1 / (1 + exp(-z))`  
+where `z = wᵀx + b`
 
 ---
 
-### 🔹 Decision Rule
+## ⚙️ Mathematical Formulation
 
-\[
-\hat{y}_{class} =
-\begin{cases}
-1, & \text{if } \hat{y} \geq 0.5 \\
-0, & \text{if } \hat{y} < 0.5
-\end{cases}
-\]
+### 1. **Hypothesis Function**
+`ŷ = σ(wᵀx + b)`
 
----
+### 2. **Cost Function (Binary Cross-Entropy)**
+`J(w, b) = -(1/m) * Σ [ y * log(ŷ) + (1 - y) * log(1 - ŷ) ]`
 
-### 🔹 Cost Function — Binary Cross-Entropy Loss
+### 3. **Gradient Descent Updates**
+- `dw = (1/m) * Xᵀ(ŷ - y)`
+- `db = (1/m) * Σ(ŷ - y)`
+- `w := w - α * dw`
+- `b := b - α * db`
 
-To measure prediction error:
-
-\[
-J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \Big]
-\]
-
-where:
-- \( m \) → number of training examples  
-- \( y^{(i)} \in \{0, 1\} \) → true label  
-- \( \hat{y}^{(i)} \) → predicted probability
+where `α` is the **learning rate**.
 
 ---
 
-### 🔹 Gradient Descent Optimization
+## 🧩 Implementation Steps
 
-To minimize the cost \( J(w, b) \), parameters are updated as follows:
+1. **Data Preprocessing**
+   - Normalize input features `X`.
+   - Split dataset into train and test sets.
 
-\[
-\begin{aligned}
-w &:= w - \alpha \frac{1}{m} X^T (\hat{y} - y) \\
-b &:= b - \alpha \frac{1}{m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})
-\end{aligned}
-\]
+2. **Model Initialization**
+   - Initialize parameters `w` and `b` to zeros.
 
-where \( \alpha \) is the learning rate.
+3. **Forward Propagation**
+   - Compute `z = wᵀx + b`
+   - Apply `σ(z)` to get predictions `ŷ`.
+
+4. **Compute Cost**
+   - Use the binary cross-entropy loss `J(w, b)`.
+
+5. **Backward Propagation**
+   - Calculate gradients `dw` and `db`.
+
+6. **Parameter Update**
+   - Apply gradient descent using learning rate `α`.
+
+7. **Prediction**
+   - Predict class `1` if `ŷ >= 0.5`, else class `0`.
 
 ---
 
-## ⚙️ Implementation Overview
+## 📊 Example Results
 
-### `Logistic_Regression_Model.py`
+After training on a sample dataset:
 
-Defines the class **`LogisticRegression`** with:
-- `__init__`: initializes hyperparameters (learning rate, iterations)
-- `fit(X, y)`: trains using gradient descent
-- `predict(X)`: returns class predictions (0 or 1)
-- `_sigmoid(x)`: computes the sigmoid activation
+| Metric | Training | Testing |
+|:-------|:----------|:--------|
+| Accuracy | 96.2% | 94.8% |
+| Cost (final) | 0.081 | 0.097 |
 
 ---
 
-### `Logistic_Regression_Test.py`
+## 🧾 Files Structure
 
-1. Loads the **Breast Cancer dataset** from `sklearn.datasets`.  
-2. Splits the dataset into training and testing sets.  
-3. Trains the model and evaluates accuracy.  
-4. Prints model performance.
-
-Example Output:
-Logistic Regression classification accuracy: 0.93
+logistic_regression/
+│
+├── logistic_regression.py # Core implementation
+├── dataset.csv # Example dataset
+├── README.md # Project documentation
+└── results.png # Training results visualization
 
 
 
 ---
 
-## 🧑‍💻 Example Usage
+## 🚀 How to Run
 
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/logistic_regression.git
+cd logistic_regression
 
-python Logistic_Regression_Test.py
-📈 Visualization (Optional)
-You can visualize the sigmoid function for intuition:
+# Run the model
+python logistic_regression.py
+📈 Example Output
 
-math
-\sigma(z) = \frac{1}{1 + e^{-z}
- ```bash
-python
-Copy code
-import numpy as np
-import matplotlib.pyplot as plt
+Training...
+Iteration 1000 | Cost: 0.287
+Iteration 2000 | Cost: 0.153
+Training complete.
 
-z = np.linspace(-10, 10, 200)
-sigma = 1 / (1 + np.exp(-z))
+Train Accuracy: 96.2%
+Test Accuracy: 94.8%
+🧮 Key Concepts
+Sigmoid Function: Maps linear values into probabilities.
 
-plt.plot(z, sigma, color="black")
-plt.title("Sigmoid Function")
-plt.xlabel("z")
-plt.ylabel("σ(z)")
-plt.grid(True)
-plt.show()
-🧠 Key Takeaways
-✅ Implements Logistic Regression from first principles
-✅ Uses Gradient Descent optimization
-✅ Builds intuition about sigmoid and cost function
-✅ Prepares you for extensions to Softmax and Multiclass Classification
+Cost Function: Measures prediction error.
+
+Gradient Descent: Optimizes weights to minimize cost.
+
+💡 Future Enhancements
+Add L2 regularization.
+
+Extend to multiclass classification using one-vs-rest.
+
+Implement a vectorized version for faster computation.
+
+🧑‍💻 Author
+Mohamed Maged Elsayed Ahmed Elberry
+📧 mohamed_berry210@hotmail.com
 
 📚 References
-Andrew Ng, Machine Learning (Stanford CS229 Notes)
+Andrew Ng — Machine Learning (Coursera)
 
-ISLR: An Introduction to Statistical Learning
-
-Géron, Aurélien — Hands-On Machine Learning with Scikit-Learn and TensorFlow
-
-👨‍💻 Author
-Mohamed Elberry
-📍 Cairo, Egypt
-💼 Passionate about AI, Machine Learning & Embedded Systems
+DeepLearning.ai — Neural Networks and Deep Learning
