@@ -75,6 +75,7 @@ After training on a sample dataset:
 logistic_regression/
 
 │
+
 ├── logistic_regression.py # Core implementation
 
 ├── dataset.csv # Example dataset
@@ -108,25 +109,25 @@ Training complete.
 Train Accuracy: 96.2%
 Test Accuracy: 94.8%
 ```
-🧮 Key Concepts
+## 🧮 Key Concepts
 Sigmoid Function: Maps linear values into probabilities.
 
 Cost Function: Measures prediction error.
 
 Gradient Descent: Optimizes weights to minimize cost.
 
-💡 Future Enhancements
+## 💡 Future Enhancements
 Add L2 regularization.
 
 Extend to multiclass classification using one-vs-rest.
 
 Implement a vectorized version for faster computation.
 
-🧑‍💻 Author
+## 🧑‍💻 Author
 Mohamed Maged Elsayed Ahmed Elberry
 📧 mohamed_berry210@hotmail.com
 
-📚 References
+## 📚 References
 Andrew Ng — Machine Learning (Coursera)
 
 DeepLearning.ai — Neural Networks and Deep Learning
