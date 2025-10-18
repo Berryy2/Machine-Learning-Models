@@ -73,11 +73,17 @@ After training on a sample dataset:
 ## 🧾 Files Structure
 
 logistic_regression/
+
 │
 ├── logistic_regression.py # Core implementation
+
 ├── dataset.csv # Example dataset
+
 ├── README.md # Project documentation
+
 └── results.png # Training results visualization
+
+
 
 
 
@@ -101,6 +107,7 @@ Training complete.
 
 Train Accuracy: 96.2%
 Test Accuracy: 94.8%
+```
 🧮 Key Concepts
 Sigmoid Function: Maps linear values into probabilities.
 
